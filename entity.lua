@@ -34,7 +34,7 @@ end
 function Enemy.draw()
 	love.graphics.setColor(255,150,150)
 	for i, v in ipairs(Enemy) do
-		love.graphics.rectangle("fill", v.posX, v.posY, 32,32)
+		--love.graphics.rectangle("fill", v.posX, v.posY, 32,32)
 	end
 	Enemy.drawDebug()
 end
