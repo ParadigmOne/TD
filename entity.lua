@@ -22,7 +22,7 @@ local newPosY = 0
 	}
 	table.insert(Enemy, newEnemy)
 end
-
+--test
 function Enemy.update()
 	for i, v in ipairs(Enemy) do
 		-- till the map is there
