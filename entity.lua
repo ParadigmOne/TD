@@ -51,7 +51,7 @@ local newDestinationY = 0
 	}
 	table.insert(Enemy, newEnemy)
 end
-
+--test
 function Enemy.update()
 	for i, v in ipairs(Enemy) do
 		if v.posX < v.destinationX then
