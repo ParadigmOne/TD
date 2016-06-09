@@ -1,5 +1,6 @@
 require "entity"
 require "board"
+require "player"
 
 function love.load()
 	Enemy.spawnNew()

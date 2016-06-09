@@ -54,4 +54,19 @@ function Enemy.drawDebug()
 end
 
 
+<<<<<<< HEAD
+--TURRET ENTITYS--
+Turret = {
+            posX
+            posY
+            turretType
+            --turret types are slow, aoe, pewpewpew
+         }
+   
+   
+function drawTurret()
+end
+       
+=======
 test
+>>>>>>> master
