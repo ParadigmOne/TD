@@ -2,6 +2,7 @@ require "entity"
 require "board"
 
 function love.load()
+	Enemy.spawnNew()
 end
 
 
@@ -10,4 +11,5 @@ end
 
 function love.draw()
     map.draw()
+	Enemy.draw()
 end
