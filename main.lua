@@ -1,3 +1,5 @@
+#require "entity"
+
 function love.load()
 end
 
