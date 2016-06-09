@@ -54,3 +54,17 @@ function Enemy.drawDebug()
 		--love.graphics.print(v.posY, 20*i, 32)
 	end
 end
+
+
+--TURRET ENTITYS--
+Turret = {
+            posX
+            posY
+            turretType
+            --turret types are slow, aoe, pewpewpew
+         }
+   
+   
+function drawTurret()
+end
+       
