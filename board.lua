@@ -42,11 +42,9 @@ local y = 0
                     love.graphics.setColor(0, 255, 0)
                 elseif v == 3 then
                     love.graphics.setColor(255, 0, 0)
-                else
-                    love.graphics.setColor(255, 255, 255)
                 end
                 love.graphics.rectangle("fill", x, y, height, width)
-                x = j * 32
+                x = i * 32
         end
         y = i * 32
     end
