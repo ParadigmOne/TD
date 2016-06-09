@@ -36,11 +36,11 @@ local x = 0
 local y = 0
     for i, v in ipairs(map) do
         for j, v in ipairs(map[i]) do
-                if v[i] == 1 then
+                if v == 1 then
                     love.graphics.setColor(0,0,0)
-                elseif v[i] == 2 then
+                elseif v == 2 then
                     love.graphics.setColor(0, 255, 0)
-                elseif v[i] == 3 then
+                elseif v == 3 then
                     love.graphics.setColor(255, 0, 0)
                 end
                 love.graphics.rectangle("fill", x, y, height, width)
