@@ -54,7 +54,6 @@ function Enemy.drawDebug()
 end
 
 
-<<<<<<< HEAD
 --TURRET ENTITYS--
 Turret = {
             posX
@@ -67,6 +66,3 @@ Turret = {
 function drawTurret()
 end
        
-=======
-test
->>>>>>> master
