@@ -50,12 +50,11 @@ function Enemy.drawDebug()
 	love.graphics.setColor(0,255,0)
 	love.graphics.print(#Enemy, 0,0)
 	for i, v in ipairs(Enemy) do
-		--love.graphics.print(Enemy[i].posX, 20*i, 16)
-		--love.graphics.print(v.posY, 20*i, 32)
 	end
 end
 
 
+<<<<<<< HEAD
 --TURRET ENTITYS--
 Turret = {
             posX
@@ -68,3 +67,6 @@ Turret = {
 function drawTurret()
 end
        
+=======
+test
+>>>>>>> master
