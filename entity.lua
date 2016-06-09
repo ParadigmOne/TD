@@ -93,8 +93,8 @@ end
 
 --TURRET ENTITYS--
 Turret = {
-            posX
-            posY
+            posX,
+            posY,
             turretType
             --turret types are slow, aoe, pewpewpew
          }

@@ -1,8 +1,8 @@
 --player
 
 Player = {
-            posX
-            posY
+            posX,
+            posY,
             turret
          }
          
@@ -45,7 +45,7 @@ local drawHUD = false
 
 function love.mousepressed(x, y, button, istouch)
     if button == 1 then
-        if drawHUD == false
+        if drawHUD == false then
             drawHUD = true
             Player.posX = x
             Player.posY = y
