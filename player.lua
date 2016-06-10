@@ -58,7 +58,18 @@ end
 --[[
 function:   player.drawHUD()
 use:        draw's the players nonsense at x, y where player clicked
+arguments:  x and y coordinate for where the turrets will be drawn
 ]]--
+
+local hudTurrets = {}
+             
 function Player.drawHUD(x, y)
-    
+    for i = 1, 3 do
+        Turret.posX = x  (i  32)
+        Turret.posY = y    (i * 32)
+        Turret.turretType = i
+        
+        table.insert (hudTurrets, Turret)
+    end
+    drawTurret(hudTurrets)
 end
