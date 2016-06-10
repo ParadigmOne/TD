@@ -51,10 +51,7 @@ local tileY = 0
 		elseif map[tileY-1][tileX] == 9 then
 			v.posY = v.posY - 1
 		end
-		
-		
 	end
-
 end
 
 
@@ -79,12 +76,6 @@ function Enemy.drawDebug()
 	love.graphics.print(Enemy[1].posX/32+1, 60,0)
 	love.graphics.print(Enemy[1].posY/32+1, 60, 20)
 	love.graphics.setColor(0,0,255)
-	love.graphics.rectangle("line", Enemy[1].posX+32, Enemy[1].posY, 32, 32)
-	
-local tileX = round(Enemy[1].posX/32)+1
-local tileY = round(Enemy[1].posY/32)+1
-love.graphics.setColor(0,255,100)
-love.graphics.rectangle("line", tileX*32, tileY*32, 32, 32) 
 end
 
 
