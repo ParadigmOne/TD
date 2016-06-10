@@ -3,7 +3,6 @@ require "board"
 require "player"
 
 function love.load()
-	Enemy.findPath()
 	Enemy.spawnNew()
 end
 
@@ -15,4 +14,8 @@ end
 function love.draw()
     map.draw()
 	Enemy.draw()
+end
+
+function round(number)
+	return number - (number % 1)
 end
