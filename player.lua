@@ -77,7 +77,7 @@ end
 function Player.drawHUD(x, y)
     for i = 1, 3 do
         hudTurrets[i].posX = x + ((i-1) * 32)
-        hudTurrets[i].posY = y +((i-1) * 32)
+        hudTurrets[i].posY = y
     end
     drawTurret(hudTurrets)
 end
