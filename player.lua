@@ -39,7 +39,7 @@ end
 
 --[[
 function:       love.mousepressed(x, y, button, istouch)
-use:            
+use:            mouse press for the hud/placing turrets
 ]]--
 
 -- keep track of mouse clicks
@@ -63,15 +63,21 @@ use:        draw's the players nonsense at x, y where player clicked
 arguments:  x and y coordinate for where the turrets will be drawn
 ]]--
 
-local hudTurrets = {}
+hudTurrets = {}
+--storage for the hud turrets
+function HudLoad()
+    for i = 1, 3 do
+        Turret.posX = 0
+        Turret.posY = 0
+        Turret.turretType = i
+        table.insert (hudTurrets, Turret)
+    end
+end
              
 function Player.drawHUD(x, y)
     for i = 1, 3 do
-        Turret.posX = x + ((i-1) * 32)
-        Turret.posY = y +((i-1) * 32)
-        Turret.turretType = i
-        
-        table.insert (hudTurrets, Turret)
+        hudTurrets[i].posX = x + ((i-1) * 32)
+        hudTurrets[i].posY = y +((i-1) * 32)
     end
     drawTurret(hudTurrets)
 end

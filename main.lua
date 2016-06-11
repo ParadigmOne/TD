@@ -4,6 +4,7 @@ require "player"
 
 function love.load()
 	Enemy.spawnNew()
+	HudLoad()
 end
 
 
