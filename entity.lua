@@ -100,7 +100,7 @@ use:        draw a turret table sent
 arguments:  a table of turrets to be drawn
 ]]--   
 function drawTurret(turretTable)
-    for i, v in ipairs(turretTable) do
+    for k, v in pairs(turretTable) do
         --set the turret color
         --slow
         if v.turretType == 1 then
