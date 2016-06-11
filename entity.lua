@@ -103,10 +103,10 @@ function drawTurret(turretTable)
     for i, v in ipairs(turretTable) do
         --set the turret color
         --slow
-        if v.turretType = 1 then
+        if v.turretType == 1 then
             love.graphics.setColor(146, 232, 169)
         --aoe
-        elseif v. turretType = 2 then
+        elseif v. turretType == 2 then
             love.graphics.setColor(153, 0, 201)
         --pewpewpew
         else
