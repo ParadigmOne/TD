@@ -24,6 +24,8 @@ function Player.draw()
     if drawHUD then
         Player.drawHUD(Player.posX, Player.posY)
     end
+		love.graphics.setColor(0,255,0)
+	love.graphics.print(tostring(drawHUD), 0,60)
 end
        
 --[[
@@ -41,10 +43,10 @@ use:
 ]]--
 
 -- keep track of mouse clicks
-local drawHUD = false
+drawHUD = false
 
 function love.mousepressed(x, y, button, istouch)
-    if button == 1 then
+    if button == "r" then
         if drawHUD == false then
             drawHUD = true
             Player.posX = x
@@ -58,7 +60,18 @@ end
 --[[
 function:   player.drawHUD()
 use:        draw's the players nonsense at x, y where player clicked
+arguments:  x and y coordinate for where the turrets will be drawn
 ]]--
+
+local hudTurrets = {}
+             
 function Player.drawHUD(x, y)
-    
+    for i = 1, 3 do
+        Turret.posX = x + ((i-1) * 32)
+        Turret.posY = y +((i-1) * 32)
+        Turret.turretType = i
+        
+        table.insert (hudTurrets, Turret)
+    end
+    drawTurret(hudTurrets)
 end

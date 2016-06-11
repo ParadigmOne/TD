@@ -80,14 +80,39 @@ end
 
 
 --TURRET ENTITYS--
+--[[          
+    posX,
+    posY,
+    turretType
+    --turret types are slow, aoe, pewpewpew
+]]--
+
 Turret = {
             posX,
             posY,
-            turretType
+            turretType,
             --turret types are slow, aoe, pewpewpew
          }
    
-   
-function drawTurret()
+--[[
+function:   drawTurret(turretTable)
+use:        draw a turret table sent
+arguments:  a table of turrets to be drawn
+]]--   
+function drawTurret(turretTable)
+    for i, v in ipairs(turretTable) do
+        --set the turret color
+        --slow
+        if v.turretType == 1 then
+            love.graphics.setColor(146, 232, 169)
+        --aoe
+        elseif v. turretType == 2 then
+            love.graphics.setColor(153, 0, 201)
+        --pewpewpew
+        else
+            love.graphics.setColor(130, 210, 245)
+        end
+        love.graphics.rectangle("fill", v.posX, v.posY, 32,32)
+    end
 end
        
