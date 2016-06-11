@@ -65,8 +65,8 @@ local hudTurrets = {}
              
 function Player.drawHUD(x, y)
     for i = 1, 3 do
-        Turret.posX = x  (i  32)
-        Turret.posY = y    (i * 32)
+        Turret.posX = x  (i * 32)
+        Turret.posY = y  (i * 32)
         Turret.turretType = i
         
         table.insert (hudTurrets, Turret)
