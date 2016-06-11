@@ -70,7 +70,12 @@ function HudLoad()
         Turret.posX = 0
         Turret.posY = 0
         Turret.turretType = i
-        table.insert (hudTurrets, Turret)
+        newTurret = {
+            posX = Turret.posX,
+            posY = Turret.posY, 
+            turretType = Turret.turretType
+        }
+        table.insert (hudTurrets, newTurret)
     end
 end
              
