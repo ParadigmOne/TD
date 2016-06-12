@@ -119,7 +119,10 @@ function Turret:copy(obj)
   return newTurret
 end
 
-function Turret:Draw()
+function Turret:Draw(x, y)
+    --set the x and y position
+    self.posX = x
+    self.posY = y
     if self.tType == "Slow" then
         love.graphics.setColor(146,232,169)
     elseif self.tType == "AoE" then

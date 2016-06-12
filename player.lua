@@ -72,13 +72,13 @@ function hudTurrets.drawAllHud()
     hudTurrets.drawThree()
 end          
 function hudTurrets.drawOne()
-    hudTurrets.one.Draw()
+    hudTurrets.one:Draw(Player.posX, Player.posY)
 end
 function hudTurrets.drawTwo()
-    hudTurrets.two.Draw()
+    hudTurrets.two:Draw(Player.posX + 32, Player.posY)
 end
 function hudTurrets.drawThree()
-    hudTurrets.three.Draw()
+    hudTurrets.three:Draw(Player.posX + 64, Player.posY)
 end
 
 --collision detection
