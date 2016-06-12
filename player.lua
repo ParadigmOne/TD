@@ -24,6 +24,9 @@ function Player.draw()
     if drawHUD then
         Player.drawHUD(Player.posX, Player.posY)
     end
+    if tType ~= 0 then
+        drawSelected(tType)
+    end
 		love.graphics.setColor(0,255,0)
 	love.graphics.print(tostring(drawHUD), 0,60)
 end
@@ -44,8 +47,10 @@ use:            mouse press for the hud/placing turrets
 
 -- keep track of mouse clicks
 drawHUD = false
+tType = 0
 
 function love.mousepressed(x, y, button, istouch)
+--make the hud show up
     if button == "r" then
         if drawHUD == false then
             drawHUD = true
@@ -53,6 +58,16 @@ function love.mousepressed(x, y, button, istouch)
             Player.posY = y
         else
             drawHUD = false
+        end
+--select the turret
+    elseif button == "l" and drawHUD then
+    --for the turrets
+        if checkCollision(Player.posX, Player.posY, 32, 32, hudTurrets[1].posX, hudTurrets[1].posY, 32, 32) then
+            tType = 1
+        elseif checkCollision(Player.posX, Player.posY, 32, 32, hudTurrets[2].posX, hudTurrets[2].posY, 32, 32) then
+            tType = 2
+        else
+            tType = 3
         end
     end
 end
@@ -85,4 +100,16 @@ function Player.drawHUD(x, y)
         hudTurrets[i].posY = y
     end
     drawTurret(hudTurrets)
+end
+
+function drawSelected(tType)
+    drawTurret(tType)
+end
+
+--collision detection
+function checkCollision(x1, y1, w1, h1, x2, y2, w2, h2)
+  return x1 < x2+w2 and
+         x2 < x1+w1 and
+         y1 < y2+h2 and
+         y2 < y1+h1
 end
