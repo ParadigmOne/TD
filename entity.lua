@@ -90,7 +90,7 @@ end
 Turret = {
             posX,
             posY,
-            turretType,
+            turretType
             --turret types are slow, aoe, pewpewpew
          }
    
@@ -106,13 +106,15 @@ function drawTurret(turretTable)
         if v.turretType == 1 then
             love.graphics.setColor(146, 232, 169)
         --aoe
-        elseif v. turretType == 2 then
+        elseif v.turretType == 2 then
             love.graphics.setColor(153, 0, 201)
         --pewpewpew
         else
             love.graphics.setColor(130, 210, 245)
         end
         love.graphics.rectangle("fill", v.posX, v.posY, 32,32)
+		love.graphics.setColor(255,0,0)
+		love.graphics.print(v.turretType, v.posX, v.posY)
     end
 end
        

@@ -67,10 +67,15 @@ hudTurrets = {}
 --storage for the hud turrets
 function HudLoad()
     for i = 1, 3 do
-        Turret.posX = 0
+		Turret.posX = 0
         Turret.posY = 0
         Turret.turretType = i
-        table.insert (hudTurrets, Turret)
+		newTurret = {
+			posX = Turret.posX,
+			posY = Turret.posY,	
+			turretType = Turret.turretType
+		}
+		table.insert (hudTurrets, newTurret)
     end
 end
              
@@ -80,4 +85,11 @@ function Player.drawHUD(x, y)
         hudTurrets[i].posY = y
     end
     drawTurret(hudTurrets)
+end
+
+function turretdebug()
+	love.graphics.setColor(255,0,0)
+	for i, v in ipairs(hudTurrets) do
+		love.graphics.print(tostring(v.turretType),0,90+(i*16))
+	end
 end

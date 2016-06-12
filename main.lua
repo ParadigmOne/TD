@@ -16,7 +16,7 @@ function love.draw()
     map.draw()
 	Enemy.draw()
 	Player.draw()
-
+turretdebug()
 end
 
 function round(number)
