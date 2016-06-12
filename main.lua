@@ -1,4 +1,5 @@
-require "entity"
+require "turret"
+require "enemy"
 require "board"
 require "player"
 
