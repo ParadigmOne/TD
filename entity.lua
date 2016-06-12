@@ -98,6 +98,11 @@ function Turret:setY(y)
   self.posY = y
 end
 
+function Turret:setXY(x, y)
+    Turret:setX(x)
+    Turret:setY(y)
+end
+
 function Turret:getX()
   return self.posX
 end
