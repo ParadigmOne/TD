@@ -22,13 +22,8 @@ use:        collect all the player draw functions to add into
 ]]--
 function Player.draw()
     if drawHUD then
-        Player.drawHUD(Player.posX, Player.posY)
+        hudTurrets.drawAllHud()
     end
-    if tType ~= 0 then
-        drawSelected(tType)
-    end
-		love.graphics.setColor(0,255,0)
-	love.graphics.print(tostring(drawHUD), 0,60)
 end
        
 --[[
@@ -47,7 +42,6 @@ use:            mouse press for the hud/placing turrets
 
 -- keep track of mouse clicks
 drawHUD = false
-tType = 0
 
 function love.mousepressed(x, y, button, istouch)
 --make the hud show up
@@ -61,49 +55,30 @@ function love.mousepressed(x, y, button, istouch)
         end
 --select the turret
     elseif button == "l" and drawHUD then
-    --for the turrets
-        if checkCollision(Player.posX, Player.posY, 32, 32, hudTurrets[1].posX, hudTurrets[1].posY, 32, 32) then
-            tType = 1
-        elseif checkCollision(Player.posX, Player.posY, 32, 32, hudTurrets[2].posX, hudTurrets[2].posY, 32, 32) then
-            tType = 2
-        else
-            tType = 3
-        end
+
     end
 end
 
---[[
-function:   player.drawHUD()
-use:        draw's the players nonsense at x, y where player clicked
-arguments:  x and y coordinate for where the turrets will be drawn
-]]--
 
-hudTurrets = {}
---storage for the hud turrets
-function HudLoad()
-    for i = 1, 3 do
-        Turret.posX = 0
-        Turret.posY = 0
-        Turret.turretType = i
-        newTurret = {
-            posX = Turret.posX,
-            posY = Turret.posY, 
-            turretType = Turret.turretType
-        }
-        table.insert (hudTurrets, newTurret)
-    end
+hudTurrets = {
+                  one = Turret.new(0,0,"Slow"),
+                  two = Turret.new(0,0,"AoE"),
+                  three = Turret.new(0,0,"PewPew"),
+              }
+              
+function hudTurrets.drawAllHud()
+    hudTurrets.drawOne()
+    hudTurrets.drawTwo()
+    hudTurrets.drawThree()
+end          
+function hudTurrets.drawOne()
+    hudTurrets.one.Draw()
 end
-             
-function Player.drawHUD(x, y)
-    for i = 1, 3 do
-        hudTurrets[i].posX = x + ((i-1) * 32)
-        hudTurrets[i].posY = y
-    end
-    drawTurret(hudTurrets)
+function hudTurrets.drawTwo()
+    hudTurrets.two.Draw()
 end
-
-function drawSelected(tType)
-    drawTurret(tType)
+function hudTurrets.drawThree()
+    hudTurrets.three.Draw()
 end
 
 --collision detection
