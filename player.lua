@@ -73,6 +73,43 @@ function love.mousepressed(x, y, button, istouch)
     end
 end
 
+<<<<<<< HEAD
+--[[
+function:   player.drawHUD()
+use:        draw's the players nonsense at x, y where player clicked
+arguments:  x and y coordinate for where the turrets will be drawn
+]]--
+
+hudTurrets = {}
+--storage for the hud turrets
+function HudLoad()
+    for i = 1, 3 do
+		Turret.posX = 0
+        Turret.posY = 0
+        Turret.turretType = i
+		newTurret = {
+			posX = Turret.posX,
+			posY = Turret.posY,	
+			turretType = Turret.turretType
+		}
+		table.insert (hudTurrets, newTurret)
+    end
+end
+             
+function Player.drawHUD(x, y)
+    for i = 1, 3 do
+        hudTurrets[i].posX = x + ((i-1) * 32)
+        hudTurrets[i].posY = y
+    end
+    drawTurret(hudTurrets)
+end
+
+function turretdebug()
+	love.graphics.setColor(255,0,0)
+	for i, v in ipairs(hudTurrets) do
+		love.graphics.print(tostring(v.turretType),0,90+(i*16))
+	end
+=======
 drawOne = false
 drawTwo = false
 drawThree = false
@@ -103,4 +140,5 @@ function checkCollision(x1, y1, w1, h1, x2, y2, w2, h2)
          x2 < x1+w1 and
          y1 < y2+h2 and
          y2 < y1+h1
+>>>>>>> refs/remotes/origin/master
 end
