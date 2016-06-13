@@ -44,9 +44,8 @@ function Enemy.update()
 		tileX = round((v.posX+xoffset)/32)+1
 		tileY = round((v.posY+yoffset)/32)+1
 		
-		
-			
-		if map[tileY][tileX-1] == 9 and v.direction ~= "right" then --left
+				
+		if map[tileY][tileX-1] == 9 and v.direction ~= "right" and v.posY == tileY*32 then --left
 			v.posX = v.posX - 1
 			v.direction = "left"
 		elseif map[tileY][tileX+1] == 9 and v.direction ~= "left" then -- right
@@ -59,7 +58,6 @@ function Enemy.update()
 			v.posY = v.posY + 1 
 			v.direction = "down"
 		end
-	
 	end
 
 end
