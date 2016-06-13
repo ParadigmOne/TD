@@ -1,57 +1,67 @@
 --enemy
 
 Enemy = {}
-Path = {}
+startX = nil
+startY = nil
 
-function Enemy.findPath()
-end
 
 function Enemy.spawnNew()
-local newPosX = 0
-local newPosY = 0
-local newDestinationX = 0
-local newDestinationY = 0
-	
-	for i, v in ipairs(map) do
-		for j, v in ipairs(map[i]) do
-			if v == 2 then
-				newPosY = (i-1)*32
-				newPosX = (j-1)*32 
-			elseif v == 3 then
-				newDestinationX = (j-1)*32
-				newDestinationY = (i-1)*32
+	if startX == nil then
+		for i, v in ipairs(map) do
+			for j, v in ipairs(map[i]) do
+				if v == 2 then
+					startX = j
+					startY = i
+				end
 			end
 		end
 	end
-
-	newEnemy = {
+	
+	newEnemy = 
+	{
 		hp = 10,
-		posX = newPosX,
-		posY = newPosY,
-		destinationX = newDestinationX,
-		destinationY = newDestinationY
+		posX = (startX-1)*32,
+		posY = (startY-1)*32,
+		direction = nil
 	}
 	table.insert(Enemy, newEnemy)
 end
 --test
 function Enemy.update()
-local tileX = 0
-local tileY = 0 
-
 	for i, v in ipairs(Enemy) do
-		tileX = round((v.posX/32))+1
-		tileY = round((v.posY/32))+1
-		
-		if map[tileY][tileX+1] == 9 then
-			v.posX = v.posX + 1
-		elseif map[tileY+1][tileX] == 9 then
-			v.posY = v.posY + 1
-		elseif map[tileY][tileX-1] == 9 then
-			v.posX = v.posX - 1
-		elseif map[tileY-1][tileX] == 9 then
-			v.posY = v.posY - 1
+		local yoffset = 0
+		local xoffset = 0
+		if v.direction == "up" then
+			yoffset = 32
+		elseif v.direction == "down" then
+			yoffset = 0
+		elseif v.direction == "left" then
+			xoffset = 32
+		elseif v.direction == "right" then
+			xoffset = 0
 		end
+		
+		tileX = round((v.posX+xoffset)/32)+1
+		tileY = round((v.posY+yoffset)/32)+1
+		
+		
+			
+		if map[tileY][tileX-1] == 9 and v.direction ~= "right" then --left
+			v.posX = v.posX - 1
+			v.direction = "left"
+		elseif map[tileY][tileX+1] == 9 and v.direction ~= "left" then -- right
+			v.posX = v.posX + 1
+			v.direction = "right"
+		elseif map[tileY-1][tileX] == 9 and v.direction ~= "down" then --up
+			v.posY = v.posY - 1 
+			v.direction = "up"
+		elseif map[tileY+1][tileX] == 9 and v.direction ~= "up" then 
+			v.posY = v.posY + 1 
+			v.direction = "down"
+		end
+	
 	end
+
 end
 
 
@@ -63,7 +73,7 @@ function Enemy.draw()
 	Enemy.drawDebug()
 end
 
-function Enemy.kill(enemy)
+function Enemy.damage(enemy)
 	if Enemy[enemy].hp <= 0 then
 		table.remove(Enemy, enemy)
 	end
@@ -72,8 +82,10 @@ end
 
 function Enemy.drawDebug()
 	love.graphics.setColor(0,255,0)
+	love.graphics.print(tileX,0,160)
+	love.graphics.print(tileY,20,160)
 	love.graphics.print(#Enemy, 0,0)
-	love.graphics.print(Enemy[1].posX/32+1, 60,0)
+	love.graphics.print(round(Enemy[1].posX/32)+1, 60,0)
 	love.graphics.print(Enemy[1].posY/32+1, 60, 20)
 	love.graphics.setColor(0,0,255)
 end
