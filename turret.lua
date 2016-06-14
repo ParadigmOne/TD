@@ -8,6 +8,7 @@ function Turret.new(x, y, tType)
   turret.posX = x
   turret.posY = y
   turret.tType = tType
+  turret.active = "false"
   return turret
 end
 
@@ -36,12 +37,17 @@ function Turret:getType()
   return self.tType
 end
 
+function Turret:setActive(boolean)
+    self.active = boolean
+end
+
 function Turret:copy(obj)
   local newTurret = {}
   setmetatable(newTurret, Turret)
   newTurret.posX = obj.posX
   newTurret.posY = obj.posY
   newTurret.tType = obj.tType
+  newTurret.active = obj.active
   return newTurret
 end
 
