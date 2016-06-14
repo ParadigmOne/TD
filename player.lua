@@ -9,11 +9,7 @@ Player = {
             turret
          }
          
---[[
-function:    player.update(dt)
-use:        collect all the player movement things to add into
-            love.update(dt)
-]]--
+ActiveTurrets = {}
 function Player.update(dt)
 	if Player.dead == true then 
 		deathTimer = deathTimer-1 
@@ -24,11 +20,6 @@ function Player.update(dt)
 	end
 end
 
---[[
-function:    player.draw()
-use:        collect all the player draw functions to add into
-            love.draw()
-]]--
 
 function Player.damage(dmg)
 	Player.HP = Player.HP - dmg
@@ -48,11 +39,11 @@ function Player.draw()
     if drawHUD then
         hudTurrets.drawAllHud()
     elseif drawOne then
-        hudTurrets.drawOne(Player.posX, Player.posY)
+        hudTurrets.drawOne(love.mouse.getX() - 16, love.mouse.getY() - 16)
     elseif drawTwo then
-        hudTurrets.drawTwo(Player.posX, Player.posY)
+        hudTurrets.drawTwo(love.mouse.getX() - 16, love.mouse.getY() - 16)
     elseif drawThree then
-        hudTurrets.drawThree(Player.posX, Player.posY)
+        hudTurrets.drawThree(love.mouse.getX() - 16, love.mouse.getY() - 16)
     end
 	
 	
@@ -65,14 +56,6 @@ function Player.draw()
 	love.graphics.print(Player.HP .. "/100", 230 , love.graphics.getHeight()-40)
 end
        
---[[
-function:   player.rightClick()
-use:        display available turret types if it was right clicked
-]]--        
- 
-function Player.rightClick()
-
-end
 
 --[[
 function:       love.mousepressed(x, y, button, istouch)
@@ -103,8 +86,26 @@ function love.mousepressed(x, y, button, istouch)
             drawThree = true
             drawHUD = false
         end
-    end
     
+    --now be able to place it
+    elseif button == "r" then
+        if drawOne == true then
+            hudTurrets.one.setXY(x, y)
+            hudTurrets.one.setActive("true")
+            table.insert(ActiveTurrets, hudTurrets.one)
+            drawOne = false
+        elseif drawTwo == true then
+            hudTurrets.two.setXY(x, y)
+            hudTurrets.two.setActive("true")
+            table.insert(ActiveTurrets, hudTurrets.two)
+            drawTwo = false
+        elseif drawThree == true then
+            hudTurrets.three.setXY(x, y)
+            hudTurrets.three.setActive("true")
+            table.insert(ActiveTurrets, hudTurrets.three)
+            drawThree = false
+        end
+    end
 end
 
 function love.mousereleased(x, y, button, istouch)
@@ -136,6 +137,7 @@ end
 function hudTurrets.drawThree(x, y)
     hudTurrets.three:Draw(x, y)
 end
+
 
 --collision detection
 function checkCollision(x1, y1, w1, h1, x2, y2, w2, h2)
