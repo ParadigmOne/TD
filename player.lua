@@ -5,6 +5,7 @@ Player = {
 			cash,
             posX,
             posY,
+			dead,
             turret
          }
          
@@ -14,7 +15,13 @@ use:        collect all the player movement things to add into
             love.update(dt)
 ]]--
 function Player.update(dt)
-
+	if Player.dead == true then 
+		deathTimer = deathTimer-1 
+		if deathTimer <= 0 then
+			love.graphics.setNewFont(12)
+			Player.dead = false
+		end
+	end
 end
 
 --[[
@@ -25,6 +32,16 @@ use:        collect all the player draw functions to add into
 
 function Player.damage(dmg)
 	Player.HP = Player.HP - dmg
+	if Player.HP <= 0 then
+		wave.number = 0
+		wave.enemiesToSpawn = 0 
+		wave.spawnTimer = 5
+		deathTimer = 200
+		for i, v in ipairs(Enemy) do
+			table.remove(Enemy, i) 
+		end 
+		Player.dead = true
+	end
 end
 
 function Player.draw()
