@@ -4,7 +4,8 @@ require "board"
 require "player"
 
 function love.load()
-	Enemy.spawnNew()
+	--beginWave()
+	Player.HP = 100
 end
 
 
@@ -15,6 +16,7 @@ end
 function love.draw()
     map.draw()
 	Enemy.draw()
+	waveButton.draw()
 	Player.draw()
 
 end
