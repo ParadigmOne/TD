@@ -1,6 +1,8 @@
 --player
 
 Player = {
+			HP,
+			cash,
             posX,
             posY,
             turret
@@ -20,6 +22,11 @@ function:    player.draw()
 use:        collect all the player draw functions to add into
             love.draw()
 ]]--
+
+function Player.damage(dmg)
+	Player.HP = Player.HP - dmg
+end
+
 function Player.draw()
     if drawHUD then
         hudTurrets.drawAllHud()
@@ -30,6 +37,15 @@ function Player.draw()
     elseif drawThree then
         hudTurrets.drawThree(Player.posX, Player.posY)
     end
+	
+	
+	--hit points
+	love.graphics.setColor(255,255,255)
+	love.graphics.rectangle("line", 10,love.graphics.getHeight()-50,500,30)
+	love.graphics.setColor(150,0,0)
+	love.graphics.rectangle("fill", 11, love.graphics.getHeight()-48, (Player.HP/100)*498, 27)
+	love.graphics.setColor(255,255,255)
+	love.graphics.print(Player.HP .. "/100", 230 , love.graphics.getHeight()-40)
 end
        
 --[[
@@ -71,6 +87,13 @@ function love.mousepressed(x, y, button, istouch)
             drawHUD = false
         end
     end
+    
+end
+
+function love.mousereleased(x, y, button, istouch)
+	if checkCollision(waveButton.x, waveButton.y, waveButton.width, waveButton.height,x,y,1,1) then 
+		beginWave()
+	end
 end
 
 drawOne = false
