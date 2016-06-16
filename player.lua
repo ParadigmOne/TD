@@ -98,17 +98,17 @@ function love.mousepressed(x, y, button, istouch)
         if drawOne == true then
             hudTurrets.one:setXY(x, y)
             hudTurrets.one:setActive(true)
-            table.insert(ActiveTurrets, hudTurrets.one)
+            table.insert(ActiveTurrets, hudTurrets.one:copy(hudTurrets.one))
             drawOne = false
         elseif drawTwo == true then
             hudTurrets.two:setXY(x, y)
             hudTurrets.two:setActive("true")
-            table.insert(ActiveTurrets, hudTurrets.two)
+            table.insert(ActiveTurrets, hudTurrets.two:copy(hudTurrets.two))
             drawTwo = false
         elseif drawThree == true then
             hudTurrets.three:setXY(x, y)
             hudTurrets.three:setActive("true")
-            table.insert(ActiveTurrets, hudTurrets.three)
+            table.insert(ActiveTurrets, hudTurrets.three:copy(hudTurrets.three))
             drawThree = false
         end
     end
