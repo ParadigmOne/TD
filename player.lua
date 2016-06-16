@@ -58,7 +58,7 @@ function Player.draw()
     
     --active turrets
     for i, v in ipairs(ActiveTurrets) do
-        ActiveTurrets[i]:Draw(ActiveTurrets[i].posX, ActiveTurrets[i].PosY)
+        ActiveTurrets[i]:Draw(ActiveTurrets[i]:getX(), ActiveTurrets[i]:getY())
     end
 end
        
