@@ -54,6 +54,12 @@ function Player.draw()
 	love.graphics.rectangle("fill", 11, love.graphics.getHeight()-48, (Player.HP/100)*498, 27)
 	love.graphics.setColor(255,255,255)
 	love.graphics.print(Player.HP .. "/100", 230 , love.graphics.getHeight()-40)
+    
+    
+    --active turrets
+    for i, v in ipairs(ActiveTurrets) do
+        ActiveTurrets[i]:Draw(ActiveTurrets[i]:getX(), ActiveTurrets[i]:getY())
+    end
 end
        
 
@@ -88,21 +94,21 @@ function love.mousepressed(x, y, button, istouch)
         end
     
     --now be able to place it
-    elseif button == "r" then
+    elseif button == "l" then
         if drawOne == true then
-            hudTurrets.one.setXY(x, y)
-            hudTurrets.one.setActive("true")
-            table.insert(ActiveTurrets, hudTurrets.one)
+            hudTurrets.one:setXY(x, y)
+            hudTurrets.one:setActive(true)
+            table.insert(ActiveTurrets, hudTurrets.one:copy(hudTurrets.one))
             drawOne = false
         elseif drawTwo == true then
-            hudTurrets.two.setXY(x, y)
-            hudTurrets.two.setActive("true")
-            table.insert(ActiveTurrets, hudTurrets.two)
+            hudTurrets.two:setXY(x, y)
+            hudTurrets.two:setActive("true")
+            table.insert(ActiveTurrets, hudTurrets.two:copy(hudTurrets.two))
             drawTwo = false
         elseif drawThree == true then
-            hudTurrets.three.setXY(x, y)
-            hudTurrets.three.setActive("true")
-            table.insert(ActiveTurrets, hudTurrets.three)
+            hudTurrets.three:setXY(x, y)
+            hudTurrets.three:setActive("true")
+            table.insert(ActiveTurrets, hudTurrets.three:copy(hudTurrets.three))
             drawThree = false
         end
     end

@@ -8,7 +8,7 @@ function Turret.new(x, y, tType)
   turret.posX = x
   turret.posY = y
   turret.tType = tType
-  turret.active = "false"
+  turret.active = false
   return turret
 end
 
