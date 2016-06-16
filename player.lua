@@ -88,10 +88,10 @@ function love.mousepressed(x, y, button, istouch)
         end
     
     --now be able to place it
-    elseif button == "r" then
+    elseif button == "l" then
         if drawOne == true then
             hudTurrets.one.setXY(x, y)
-            hudTurrets.one.setActive("true")
+            hudTurrets.one.setActive(true)
             table.insert(ActiveTurrets, hudTurrets.one)
             drawOne = false
         elseif drawTwo == true then
