@@ -39,11 +39,11 @@ function Player.draw()
     if drawHUD then
         hudTurrets.drawAllHud()
     elseif drawOne then
-        hudTurrets.drawOne(love.mouse.getX() - 16, love.mouse.getY() - 16)
+        hudTurrets.drawOne(round((love.mouse.getX()/32))*32, round(love.mouse.getY()/32)*32)
     elseif drawTwo then
-        hudTurrets.drawTwo(love.mouse.getX() - 16, love.mouse.getY() - 16)
+        hudTurrets.drawTwo(round(love.mouse.getX()/32)*32, round(love.mouse.getY()/32)*32)
     elseif drawThree then
-        hudTurrets.drawThree(love.mouse.getX() - 16, love.mouse.getY() - 16)
+        hudTurrets.drawThree(round((love.mouse.getX()/32))*32, round(love.mouse.getY()/32)*32)
     end
 	
 	
@@ -78,6 +78,8 @@ function love.mousepressed(x, y, button, istouch)
             drawHUD = true
             Player.posX = x
             Player.posY = y
+		else 
+			drawHUD = false
         end
 --select the turret
     elseif button == "l" and drawHUD then
@@ -96,20 +98,26 @@ function love.mousepressed(x, y, button, istouch)
     --now be able to place it
     elseif button == "l" then
         if drawOne == true then
-            hudTurrets.one:setXY(x, y)
+            if map.checkPlaceableTile(round(x/32)+1,round(y/32)+1) then 
+			hudTurrets.one:setXY(x, y)
             hudTurrets.one:setActive(true)
             table.insert(ActiveTurrets, hudTurrets.one:copy(hudTurrets.one))
             drawOne = false
-        elseif drawTwo == true then
+			end
+		elseif drawTwo == true then
+			if map.checkPlaceableTile(round(x/32)+1, round(y/32)+1) then 
             hudTurrets.two:setXY(x, y)
             hudTurrets.two:setActive("true")
             table.insert(ActiveTurrets, hudTurrets.two:copy(hudTurrets.two))
             drawTwo = false
+			end
         elseif drawThree == true then
+			if map.checkPlaceableTile(round(x/32)+1, round(y/32)+1) then
             hudTurrets.three:setXY(x, y)
             hudTurrets.three:setActive("true")
             table.insert(ActiveTurrets, hudTurrets.three:copy(hudTurrets.three))
             drawThree = false
+			end
         end
     end
 end
