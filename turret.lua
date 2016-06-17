@@ -7,6 +7,8 @@ function Turret.new(x, y, tType)
   setmetatable(turret, Turret)
   turret.posX = x
   turret.posY = y
+  turret.tileX = nil
+  turret.tileY = nil
   turret.tType = tType
   turret.active = false
   return turret
@@ -14,10 +16,12 @@ end
 
 function Turret:setX(x)
   self.posX = x
+  self.tileX = round(x/32)+1
 end
 
 function Turret:setY(y)
   self.posY = y
+  self.tileY = round(y/32)+1
 end
 
 function Turret:setXY(x, y)
@@ -46,6 +50,8 @@ function Turret:copy(obj)
   setmetatable(newTurret, Turret)
   newTurret.posX = obj.posX
   newTurret.posY = obj.posY
+  newTurret.tileX = obj.tileX 
+  newTurret.tileY = obj.tileY
   newTurret.tType = obj.tType
   newTurret.active = obj.active
   return newTurret

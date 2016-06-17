@@ -5,7 +5,7 @@ require "player"
 
 function love.load()
 	--beginWave()
-	Player.HP = 3
+	Player.HP = 100
 	Player.dead = false
 end
 
